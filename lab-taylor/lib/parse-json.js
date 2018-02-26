@@ -22,9 +22,9 @@ module.exports = function(req) {
       req.on('error', err => {
         console.error(err);
         reject(err);
-    });
-    return;
+      });
+      return;
     }
     resolve();
   });
-}
+};
