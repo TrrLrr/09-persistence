@@ -9,14 +9,11 @@ module.exports= function(router) {
     if(req.url.query.id) {
       storage.fetchItem('beer', req.url.query.id)
         .then( beer => {
-
           response.sendJSON(res, 200, beer);
-        
         })
         .catch( err => {
           console.error(err);
           response.sendText(res, 404, 'route not found');
-        
         });
       return;
     }
@@ -28,34 +25,37 @@ module.exports= function(router) {
     if(req.url.query.id) {
       storage.deleteItem('beer', req.url.query.id)
         .then( beer => {
-
           response.sendJSON(res, 204, beer);
-        
         })
         .catch( err => {
           console.error(err);
           response.sendText(res, 404, 'route not found');
-        
         });
       return;
     }
     response.sendText(res, 400, 'bad request');
-    
   });
 
-  
-  
   router.post('/api/beer', function(req,res) {
     try {
       var beer = new Beer(req.body.name, req.body.style);
       storage.createItem('beer', beer);
       response.sendJSON(res, 200, beer);
-      
     } catch (err) {
       console.error(err);
       response.sendText(res, 400, 'bad request');
-      
     }
   });
   
 };
+        
+      
+  
+  
+      
+    
+
+        
+
+        
+        
